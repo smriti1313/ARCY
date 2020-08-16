@@ -10,11 +10,9 @@ voices = engine.getProperty('voices')
 # print(voices[1].id)
 engine.setProperty('voices', voices[0].id)
 
-
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
-
 
 def wishMe():
     hour = int(datetime.datetime.now().hour)  # hour format:24 hours
@@ -30,7 +28,7 @@ def wishMe():
 def takeCommand():
     # it takes in microphone input from the user and returns and string output
     r = sr.Recognizer()
-    with sr.Microphone as source:
+    with sr.Microphone() as source:
         print("Listening.....")
         r.pause_threshold = 1
         audio = r.listen(source)
