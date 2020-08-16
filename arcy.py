@@ -2,15 +2,19 @@ import pyttsx3
 import speech_recognition as sr
 import datetime
 import wikipedia
+import webbrowser
+import os
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 # print(voices[1].id)
 engine.setProperty('voices', voices[0].id)
 
+
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
+
 
 def wishMe():
     hour = int(datetime.datetime.now().hour)  # hour format:24 hours
@@ -37,11 +41,12 @@ def takeCommand():
         # print("User said: ", query)
         print(f"User said: {query}\n")
 
-    except Exceptions as e:
+    except Exception:  # except Exceptions as e
         # print(e) it will print the error which will kinda look ugly
         print("Please Repeat...")
         return "None"
     return query
+
 
 if __name__ == "__main__":
     wishMe()
@@ -57,4 +62,21 @@ if __name__ == "__main__":
             speak(results)
 
         elif 'open youtube' in query:
+            webbrowser.open('youtube.com')
+
+        elif 'open google' in query:
+            webbrowser.open('google.com')
+
+        elif 'open twitter' in query:
+            webbrowser.open('twitter.com')
+
+        elif 'tokyo ghoul' in query:
+            vid="C:\\Users\\Smriti\\Desktop\\college\\tokyo ghoul s2"
+            vi=os.listdir(vid)
+            print(vi)
+            os.startfile(os.path.join(vid, vi[0]))
+
+        elif 'time' in query:
+            string = datetime.datetime.now().strftime("%M:%M:%S")
+            speak (string)
 
