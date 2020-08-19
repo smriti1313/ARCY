@@ -4,6 +4,7 @@ import datetime
 import wikipedia
 import webbrowser
 import os
+import smtplib
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -26,7 +27,8 @@ def wishMe():
 
 
 def takeCommand():
-    # it takes in microphone input from the user and returns and string output
+    # it takes in microphone input from the user and returns a string output
+    #there is some error in here. need to solve.
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening.....")
@@ -45,7 +47,13 @@ def takeCommand():
         return "None"
     return query
 
-def sendEmail
+def sendEmail(to, content):
+    server=smtplib.SMTP('smtp.gmail.com',587)
+    server.ehlo()
+    server.starttls()
+    server.login('180120107164@git.org.in','your-password') #for security purpose you can keep your password in .txt file and can make the code read the password from it.
+    server.sendmail('180120107164@git.org.in',to, content)
+    server.close()
 
 if __name__ == "__main__":
     wishMe()
@@ -84,6 +92,8 @@ if __name__ == "__main__":
             os.startfile(musicpath)
 
         elif 'email to riti' in query:
+            #enable less secure apps by channging the settings of your mail account
+            #smtp(in-built) module used
             try:
                 speak('What should i say?')
                 content=takeCommand()
