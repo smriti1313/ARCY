@@ -45,6 +45,7 @@ def takeCommand():
         return "None"
     return query
 
+def sendEmail
 
 if __name__ == "__main__":
     wishMe()
@@ -76,5 +77,22 @@ if __name__ == "__main__":
 
         elif 'time' in query:
             string = datetime.datetime.now().strftime("%M:%M:%S")
-            speak (string)
+            speak(f"the time is {string}")
+
+        elif 'music' in query:
+            musicpath="C:\\Users\\Smriti\\Downloads\\SpotifySetup.exe"
+            os.startfile(musicpath)
+
+        elif 'email to riti' in query:
+            try:
+                speak('What should i say?')
+                content=takeCommand()
+                to="180120107164@git.org.in"
+                sendEmail(to,content)
+                speak('Email has been sent')
+            except Exception as e:
+                print(e)
+                speak('Could not sent')
+
+
 
