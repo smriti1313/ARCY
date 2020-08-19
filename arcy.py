@@ -104,5 +104,10 @@ if __name__ == "__main__":
                 print(e)
                 speak('Could not sent')
 
+        elif 'quit' in query:
+            exit()
+
+
+
 
 
